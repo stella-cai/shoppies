@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     },
     headerTitle: {
         flexGrow: 1,
-        margin: "20px",
+        marginInline: "100px",
+        marginBlock: "30px",
     },
     menuButton: {
         fontWeight: 700,
@@ -25,23 +26,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Header() {
     const classes = useStyles();
 
-    const displayTitle = () => {
-        return (
-            <Toolbar className={classes.toolbar}>
-                {headerTitle}
-                <Container className={classes.buttonContainer}>
-                    {getMenuButtons()}
-                </Container>
-            </Toolbar>
-        );
-    };
-
-    const headerTitle = (
-        <Typography className={classes.headerTitle} variant="h3">
-            Movie Search
-        </Typography>
-    );
-
     const headersData = [
         {
             label: "All Movies",
@@ -50,10 +34,6 @@ export default function Header() {
         {
             label: "My Nominees",
             href: "/nominees",
-        },
-        {
-            label: "Log Out",
-            href: "/logout",
         },
     ];
 
@@ -81,7 +61,7 @@ export default function Header() {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <Typography className={classes.headerTitle} variant="h3">
-                        Shopify Movie Award
+                        The Shoppies
                     </Typography>
                     <Container className={classes.buttonContainer}>
                         {getMenuButtons()}
