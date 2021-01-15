@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Grid, makeStyles, List, ListItem, ListItemText, Container, Button, Box } from "@material-ui/core";
+import { FormControl, Grid, makeStyles, InputAdornment, InputLabel, Container, OutlinedInput, Box, Typography } from "@material-ui/core";
 import { URL, APIKEY } from "../api";
 import axios from "axios";
 import MovieCard from "./MovieCard";
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     },
     searchBar: {
         flexGrow: 1,
-        width: "90%",
+        // width: "90%",
         height: "5%",
         borderRadius: "10%",
     },
@@ -33,6 +34,19 @@ const useStyles = makeStyles(theme => ({
     card: {
         alignSelf: "flex-start",
         margin: "1%",
+    },
+    banner: {
+        width: "90%",
+        backgroundColor: "#FAF6EA",
+        border: 1,
+        borderStyle: "solid",
+        borderRadius: "15px",
+        paddingInline: "20px",
+        paddingBlock: "10px",
+        marginBottom: "1%",
+    },
+    bannerText: {
+        colorInherit: "#000000",
     }
 }));
 
@@ -48,7 +62,7 @@ export default function Movies(props) {
     }, [nominees])
 
     useEffect(() => {
-        if(searchText){
+        if (searchText) {
             axios.get(URL, {
                 params: {
                     apikey: APIKEY,
@@ -56,7 +70,7 @@ export default function Movies(props) {
                 }
             })
                 .then(response => {
-                    if (response.data.Response === "True"){
+                    if (response.data.Response === "True") {
                         setSearchResult(response.data.Search);
                     }
                     else {
@@ -70,46 +84,42 @@ export default function Movies(props) {
         else {
             setSearchResult([])
         }
-    
+
     }, [searchText]);
 
+    const canNominateMore = () => {
+        console.log('nominees.length :>> ', nominees.length);
+        return nominees.length < 5;
+    }
+
     const nominateMovie = (movieID) => {
-        console.log('nominees :>> ', nominees);
-        console.log("nominated movie");
-        console.log('movieID :>> ', movieID);
-        if (!isNominated(movieID)) {
+        if (canNominateMore() && !isNominated(movieID)) {
             const newNominees = [...nominees];
             newNominees.push(movieID);
-            console.log('newNominees :>> ', newNominees);
             setNominees(newNominees);
         }
-
     }
 
     const isNominated = (movieID) => {
-        console.log("inside isNominated");
-        console.log('nominees :>> ', nominees);
-        console.log('nominees.includes(movieID) :>> ', nominees.includes(movieID));
         const isIncluded = nominees.includes(movieID);
         return isIncluded;
     }
 
     const onChangeSearchText = (event) => {
         const text = event.target.value;
-        console.log('text :>> ', text);
         setSearchText(text)
     }
 
     const moviesList = () => {
         console.log('searchResult :>> ', searchResult);
-        const list = searchResult.map( (movieData) => {
+        const list = searchResult.map((movieData) => {
             // console.log('movieData :>> ', movieData);
             return (
                 <Box className={classes.card}>
-                    <MovieCard movieData={movieData} nominateMovie={nominateMovie} isNominated={isNominated(movieData.imdbID)}/>
+                    <MovieCard movieData={movieData} nominateMovie={nominateMovie} isNominated={isNominated(movieData.imdbID)} />
                 </Box>
             )
-        }   
+        }
         )
         return list;
     }
@@ -117,8 +127,23 @@ export default function Movies(props) {
     return (
         <div className={classes.root}>
             <Grid container className={classes.container}>
-                <TextField label="Movie title" variant="outlined" className={classes.searchBar} onChange={onChangeSearchText}/>
+                {!canNominateMore() &&
+                    <Container className={classes.banner}>
+                        <Typography variant="h5" color="inherit" className={classes.bannerText} align="center">
+                            You have already nominated 5 movies.
+                    </Typography>
+                    </Container>}
 
+                <Grid container spacing={1} alignItems="flex-end">
+                    <FormControl fullWidth className={classes.margin} variant="outlined">
+                        <InputLabel htmlFor="movie-title">Movie title</InputLabel>
+                        <OutlinedInput
+                            onChange={onChangeSearchText}
+                            startAdornment={<InputAdornment position="start"><SearchIcon /></InputAdornment>}
+                            label="Movie title"
+                        />
+                    </FormControl>
+                </Grid>
                 <Grid container className={classes.cardContainer}>
                     {moviesList()}
                 </Grid>

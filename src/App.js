@@ -3,30 +3,39 @@ import Header from './Header';
 import Movies from "./movies/Movies";
 import Nominees from "./nominees/Nominees"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 function App() {
 
-  // Note: ideally the data would be handled by the backend.
+  // Note: ideally the data would be handled by the backend through GET, POST, and DELETE api calls.
 
   const [nominees, setNominees] = useState([]);
-  // let nominees = []
-  // const setNominees = null;
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: "#008060",
+      },
+    },
+  });
 
   return (
     <div className="App">
-      <Router>
-        <Header/>
-        <Switch>
-          <Route path="/movies">
-            <Movies nominees={nominees} setNominees={setNominees}/>
-          </Route>
-          <Route path="/nominees">
-            <Nominees nominees={nominees} setNominees={setNominees}/>
-          </Route >
-          <Route path="/">
-          </Route>
-        </Switch>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/movies">
+              <Movies nominees={nominees} setNominees={setNominees} />
+            </Route>
+            <Route path="/nominees">
+              <Nominees nominees={nominees} setNominees={setNominees} />
+            </Route >
+            <Route path="/">
+            </Route>
+          </Switch>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }

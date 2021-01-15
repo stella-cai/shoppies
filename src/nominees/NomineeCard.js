@@ -1,8 +1,6 @@
 import React, { useState, useEffect }  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -12,13 +10,7 @@ import axios from "axios";
 
 const useStyles = makeStyles({
     card: {
-        // maxWidth: "0%",
-        // display: "flex",
         padding: "2%",
-        // flexGrow: 1,
-        // flexDirection: "column",
-        // width: "324px",
-        // height: "500px",
     },
     container: {
         display: "flex",
@@ -90,7 +82,7 @@ export default function NomineeCard(props) {
                         <Typography variant="h6" color="textSecondary" component="p" className={classes.plot}>
                             {movieData.Plot}
                         </Typography>
-                        <Button size="medium" color="secondary" className={classes.unNominateButton}>
+                        <Button size="medium" color="secondary" className={classes.unNominateButton} onClick={props.unNominateMovie}>
                             Un-nominate
                         </Button>
                     </CardContent>
