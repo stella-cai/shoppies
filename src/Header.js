@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         marginInline: "100px",
         marginBlock: "30px",
+        color: "#FFFFFF",
     },
     menuButton: {
         fontWeight: 700,
@@ -60,9 +61,11 @@ export default function Header() {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
-                    <Typography className={classes.headerTitle} variant="h3">
-                        The Shoppies
-                    </Typography>
+                    <Link to="/" style={{ textDecoration: 'none'}}>
+                        <Typography className={classes.headerTitle} variant="h3">
+                            The Shoppies
+                        </Typography>
+                    </Link>
                     <Container className={classes.buttonContainer}>
                         {getMenuButtons()}
                     </Container>
