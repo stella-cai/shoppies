@@ -17,6 +17,9 @@ function App() {
         main: "#008060",
       },
     },
+    typography: {
+      fontFamily: ['Helvetica Neue'],
+    },
   });
 
   return (

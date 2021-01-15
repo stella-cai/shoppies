@@ -26,10 +26,8 @@ const useStyles = makeStyles(theme => ({
         flexWrap: "wrap",
         width: "90%",
         alignSelf: "center",
-        flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        flexWrap: "wrap",
     },
     card: {
         alignSelf: "flex-start",
@@ -56,10 +54,11 @@ export default function Movies(props) {
     const [searchResult, setSearchResult] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [nominees, setNominees] = useState(props.nominees);
+    const setPropsNominees = props.setNominees;
 
     useEffect(() => {
-        props.setNominees(nominees);
-    }, [nominees])
+        setPropsNominees(nominees);
+    }, [nominees, setPropsNominees])
 
     useEffect(() => {
         if (searchText) {
@@ -111,9 +110,7 @@ export default function Movies(props) {
     }
 
     const moviesList = () => {
-        console.log('searchResult :>> ', searchResult);
         const list = searchResult.map((movieData) => {
-            // console.log('movieData :>> ', movieData);
             return (
                 <Box className={classes.card}>
                     <MovieCard movieData={movieData} nominateMovie={nominateMovie} isNominated={isNominated(movieData.imdbID)} />

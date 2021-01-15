@@ -25,10 +25,11 @@ export default function Nominees(props) {
     const classes = useStyles();
 
     const [nominees, setNominees] = useState(props.nominees);
-
+    const setPropsNominees = props.setNominees;
+    
     useEffect(() => {
-        props.setNominees(nominees);
-    }, [nominees])
+        setPropsNominees(nominees);
+    }, [nominees, setPropsNominees])
 
     const moviesList = () => {
         const list = nominees.map((movieID) => {
