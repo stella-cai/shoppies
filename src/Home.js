@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        // justifyItems: "center",
     },
     logo: {
         margin: "5%",

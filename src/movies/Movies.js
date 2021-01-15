@@ -17,7 +17,6 @@ const useStyles = makeStyles(theme => ({
     },
     searchBar: {
         flexGrow: 1,
-        // width: "90%",
         height: "5%",
         borderRadius: "10%",
     },
