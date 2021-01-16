@@ -29,7 +29,7 @@ export default function Header() {
 
     const headersData = [
         {
-            label: "All Movies",
+            label: "Movies",
             href: "/movies",
         },
         {
@@ -62,7 +62,7 @@ export default function Header() {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <Link to="/" style={{ textDecoration: 'none'}}>
-                        <Typography className={classes.headerTitle} variant="h3">
+                        <Typography className={classes.headerTitle} variant="h4">
                             The Shoppies
                         </Typography>
                     </Link>

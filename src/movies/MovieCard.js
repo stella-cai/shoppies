@@ -11,12 +11,12 @@ const useStyles = makeStyles({
     card: {
         // maxWidth: "0%",
         flexGrow: 1,
-        width: "324px",
-        height: "620px",
+        width: "272px",
+        height: "550px",
     },
     media: {
-        height: "480px",
-        width: "324px",
+        height: "402px",
+        width: "272px",
         justifyContent: "flex-end",
     },
     buttonContainer: {
@@ -51,10 +51,10 @@ export default function MovieCard(props) {
             {/* </CardActionArea> */}
 
             <CardActions className={classes.buttonContainer}>
-                <Button size="medium" color="primary" disabled={isNominated} onClick={() => nominateMovie(movieData.imdbID)}>
+                <Button size="small" color="primary" disabled={isNominated} onClick={() => nominateMovie(movieData.imdbID)}>
                     Nominate
                 </Button>
-                <Button size="medium" color="primary" onClick={learnMore}>
+                <Button size="small" color="primary" onClick={learnMore}>
                     Learn More
                 </Button>
             </CardActions>

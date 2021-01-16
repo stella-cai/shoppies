@@ -21,8 +21,8 @@ const useStyles = makeStyles({
         justifyContent: "flex-start",
     },
     media: {
-        height: "480px",
-        minWidth: "324px",
+        height: "402px",
+        minWidth: "272px",
     },
     unNominateButton: {
         alignSelf: "flex-end",
@@ -74,7 +74,7 @@ export default function NomineeCard(props) {
                         <Typography variant="h5" color="textSecondary" component="p">
                             {movieData.Actors}
                         </Typography>
-                        <Typography variant="h6" color="textSecondary" component="p" className={classes.plot}>
+                        <Typography variant="b1" color="textSecondary" component="p" className={classes.plot}>
                             {movieData.Plot}
                         </Typography>
                         <Button size="medium" color="secondary" className={classes.unNominateButton} onClick={props.unNominateMovie}>
