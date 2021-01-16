@@ -1,3 +1,7 @@
+# Shoppies Movie Award - 2021 Shopify Challenge (Frontend)
+![Movies](demo_movies.png)
+![Movies](demo_nominees.png)
+
 ## Heroku Deployment
 [https://stella-cai-shoppies.herokuapp.com/](https://stella-cai-shoppies.herokuapp.com/)
 
